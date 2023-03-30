@@ -1,4 +1,4 @@
-module gitee.com/ydstudios/xpay
+module github.com/try-labs/xpay
 
 go 1.20
 
