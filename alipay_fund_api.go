@@ -17,7 +17,7 @@ var _ IAliPayRequest = &FundAccountQueryReq{}
 type FundAccountQueryReq struct {
 	AlipayUserId string `json:"alipay_user_id"`         //	必选	28 支付宝会员 id。 2088301409188095
 	AccountType  string `json:"account_type,omitempty"` // 特殊可选	30 查询的账号类型，查询余额账户值为ACCTRANS_ACCOUNT。必填。
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *FundAccountQueryReq) DoValidate() error {
@@ -64,7 +64,7 @@ type FundTransToAccountTransferReq struct {
 	PayerShowName string `json:"payer_show_name,omitempty"` // 可选	100 付款方姓名（最长支持100个英文/50个汉字）。显示在收款方的账单详情页。如果该字段不传，则默认显示付款方的支付宝认证姓名或单位名称。
 	PayeeRealName string `json:"payee_real_name,omitempty"` // 可选	100 收款方真实姓名（最长支持100个英文/50个汉字）。 如果本参数不为空，则会校验该账户在支付宝登记的实名是否与收款方真实姓名一致。
 	Remark        string `json:"remark,omitempty"`          // 可选	200 转账备注（支持200个英文/100个汉字）。 当付款方为企业账户，且转账金额达到（大于等于）50000元，remark不能为空。收款方可见，会展示在收款用户的收支详情中。
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *FundTransToAccountTransferReq) DoValidate() error {
@@ -100,7 +100,7 @@ func (r *FundTransToAccountTransferRes) String() string {
 type FundTransOrderQueryReq struct {
 	OutBizNo string `json:"out_biz_no"`         // 必选	64 商户转账唯一订单号：发起转账来源方定义的转账单据号。请求时对应的参数，原样返回。
 	OrderId  string `json:"order_id,omitempty"` // 可选	64 支付宝转账单据号，成功一定返回，失败可能不返回也可能返回。
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *FundTransOrderQueryReq) DoValidate() error {
@@ -164,7 +164,7 @@ type FundTransUniTransferReq struct {
 		* false：不展示别名。默认为 false。
 		{"payer_show_name_use_alias":"true"}
 	*/
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *FundTransUniTransferReq) DoValidate() error {
@@ -249,7 +249,7 @@ type FundTransCommonQueryReq struct {
 		当本参数和order_id（支付宝转账单据号）同时提供时，将用本参数进行查询，忽略支付宝转账单据号；
 		当本参数和out_biz_no（商户转账唯一订单号）同时提供时，将用本参数进行查询，忽略商户转账唯一订单号。
 	*/
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *FundTransCommonQueryReq) DoValidate() error {

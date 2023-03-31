@@ -23,7 +23,7 @@ type CommerceCityFacilitatorVoucherGenerateReq struct {
 	SiteBegin   string `json:"site_begin,omitempty"` // 可选	30 起点站站点编码 02490301
 	SiteEnd     string `json:"site_end,omitempty"`   // 可选	30 终点站站点编码 02490305
 	TicketPrice string `json:"ticket_price"`         // 必选	20 单张票价，元为单价 5.00
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *CommerceCityFacilitatorVoucherGenerateReq) DoValidate() error {
@@ -65,7 +65,7 @@ var _ IAliPayRequest = &CommerceCityFacilitatorVoucherRefundReq{}
 type CommerceCityFacilitatorVoucherRefundReq struct {
 	CityCode string `json:"city_code"` // 必选	30 城市编码请参考查询 中华人民共和国行政区划代码。 已支持城市：广州 440100，深圳 440300，杭州330100。
 	TradeNo  string `json:"trade_no"`  // 必选	100 支付宝交易号（交易支付时，必须通过指定sellerId：2088121612215201，将钱支付到指定的中间户中）
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *CommerceCityFacilitatorVoucherRefundReq) DoValidate() error {
@@ -104,7 +104,7 @@ var _ IAliPayRequest = &CommerceCityFacilitatorStationQueryReq{}
 
 type CommerceCityFacilitatorStationQueryReq struct {
 	CityCode string `json:"city_code"` // 必选	30 城市编码请参考查询 中华人民共和国行政区划代码。 已支持城市：广州 440100，深圳 440300，杭州330100。
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *CommerceCityFacilitatorStationQueryReq) DoValidate() error {
@@ -146,7 +146,7 @@ var _ IAliPayRequest = &CommerceCityFacilitatorVoucherBatchQueryReq{}
 type CommerceCityFacilitatorVoucherBatchQueryReq struct {
 	CityCode string   `json:"city_code"` // 必选	30 城市编码请参考查询 中华人民共和国行政区划代码。 已支持城市：广州 440100，深圳 440300，杭州330100。
 	TradeNos []string `json:"trade_nos"` // 必选	800 支付宝交易号列表
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *CommerceCityFacilitatorVoucherBatchQueryReq) DoValidate() error {

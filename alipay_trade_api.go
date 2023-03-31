@@ -47,7 +47,7 @@ type TradePagePayReq struct {
 	// 自己添加
 	ReturnUrl string `json:"-" url:"-"` // 可选	256 HTTP/HTTPS开头字符串
 	NotifyUrl string `json:"-" url:"-"` // 可选	256	 支付宝服务器主动通知商户服务器里指定的页面http/https路径。
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *TradePagePayReq) DoValidate() error {
@@ -192,7 +192,7 @@ type TradeQueryReq struct {
 	//voucher_detail_list：交易支付时使用的所有优惠券信息；
 	//discount_goods_detail：交易支付所使用的单品券优惠的商品优惠信息；
 	//mdiscount_amount：商家优惠金额；
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *TradeQueryReq) DoValidate() error {
@@ -307,7 +307,7 @@ type TradeCloseReq struct {
 
 	// 自行添加
 	NotifyUrl string `json:"notify_url,omitempty" url:"notify_url,omitempty"` // 可选	256	 支付宝服务器主动通知商户服务器里指定的页面http/https路径。
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *TradeCloseReq) DoValidate() error {
@@ -349,7 +349,7 @@ type TradeRefundReq struct {
 	//注： 1.当面付且非直付通模式无需传入退分账明细，系统自动按退款金额与订单金额的比率，从收款方和分账收入方退款，不支持指定退款金额与退款方。
 	//2.直付通模式，电脑网站支付，手机 APP 支付，手机网站支付产品，须在退款请求中明确是否退分账，从哪个分账收入方退，退多少分账金额；如不明确，默认从收款方退款，收款方余额不足退款失败。不支持系统按比率退款。
 	QueryOptions []string `json:"query_options,omitempty"` // 可选	1024 查询选项。 商户通过上送该参数来定制同步需要额外返回的信息字段，数组格式。支持：refund_detail_item_list：退款使用的资金渠道；deposit_back_info：触发银行卡冲退信息通知；
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 type OpenApiRoyaltyDetailInfoPojo struct {
@@ -432,7 +432,7 @@ type TradeFastPayRefundQueryReq struct {
 	//refund_detail_item_list：本次退款使用的资金渠道；
 	//gmt_refund_pay：退款执行成功的时间；
 	//deposit_back_info：银行卡冲退信息；
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 var _ IAliPayRequest = (*TradeFastPayRefundQueryReq)(nil)
@@ -540,7 +540,7 @@ type DataServiceBillDownloadUrlQueryReq struct {
 	//* 日账单格式为yyyy-MM-dd，最早可下载2016年1月1日开始的日账单。不支持下载当日账单，只能下载前一日24点前的账单数据（T+1），当日数据一般于次日 9 点前生成，特殊情况可能延迟。
 	//* 月账单格式为yyyy-MM，最早可下载2016年1月开始的月账单。不支持下载当月账单，只能下载上一月账单数据，当月账单一般在次月 3 日生成，特殊情况可能延迟。
 	SMid string `json:"smid,omitempty"` // 可选	20 二级商户smid，这个参数只在bill_type是trade_zft_merchant时才能使用 2088123412341234
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 var _ IAliPayRequest = (*DataServiceBillDownloadUrlQueryReq)(nil)
@@ -587,7 +587,7 @@ type TradeWapPayReq struct {
 	ExtUserInfo     *ExtUserInfo   `json:"ext_user_info,omitempty"`
 	ReturnUrl       string         `json:"-" url:"-"` // 可选	256 HTTP/HTTPS开头字符串
 	NotifyUrl       string         `json:"-" url:"-"` // 可选	256	 支付宝服务器主动通知商户服务器里指定的页面http/https路径。
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func NewTradeWapPayReq(outTradeNo, totalAmount, subject string, opts ...TradeWapPayOpt) *TradeWapPayReq {
@@ -721,7 +721,7 @@ type TradeAppPayReq struct {
 	QueryOptions    []string       `json:"query_options,omitempty"`     // 可选 1024 返回参数选项。 商户通过传递该参数来定制同步需要额外返回的信息字段，数组格式。包括但不限于：["hyb_amount","enterprise_pay_info"]
 	ReturnUrl       string         `json:"-" url:"-"`                   // 可选	256 HTTP/HTTPS开头字符串
 	NotifyUrl       string         `json:"-" url:"-"`                   // 可选	256	 支付宝服务器主动通知商户服务器里指定的页面http/https路径。
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *TradeAppPayReq) DoValidate() error {
@@ -778,7 +778,7 @@ type TradePreCreateReq struct {
 	OperatorId         string         `json:"operator_id,omitempty"`         // 可选 28 操作员id
 	TerminalId         string         `json:"terminal_id,omitempty"`         // 可选	32 商户机具终端编号
 	MerchantOrderNo    string         `json:"merchant_order_no,omitempty"`   // 可选	32 商户原始订单号，最大长度限制 32 位
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *TradePreCreateReq) DoValidate() error {
@@ -822,7 +822,7 @@ var _ IAliPayRequest = &TradeCancelReq{}
 type TradeCancelReq struct {
 	OutTradeNo string `json:"out_trade_no,omitempty"` // 特殊可选	64 商户订单号。 订单支付时传入的商户订单号，商家自定义且保证商家系统中唯一。与支付宝交易号 trade_no 不能同时为空。
 	TradeNo    string `json:"trade_no,omitempty"`     // 特殊可选	64 支付宝交易号。 和商户订单号 out_trade_no 不能同时为空。
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *TradeCancelReq) DoValidate() error {
@@ -890,7 +890,7 @@ type TradeCreateReq struct {
 	BkAgentReqInfo       *BkAgentReqInfo      `json:"bkagent_req_info,omitempty"`      // 可选 间联交易下，由收单机构上送的信息
 	// 自己添加
 	NotifyUrl string `json:"-" url:"-"` // 可选	256	 支付宝服务器主动通知商户服务器里指定的页面http/https路径。
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *TradeCreateReq) DoValidate() error {
@@ -995,7 +995,7 @@ type TradePayReq struct {
 	QueryOptions   []string       `json:"query_options,omitempty"`   // 可选 1024 返回参数选项。 商户通过传递该参数来定制需要额外返回的信息字段，数组格式。包括但不限于：["enterprise_pay_info","hyb_amount"]
 	// 自己添加
 	NotifyUrl string `json:"-" url:"-"` // 可选	256	 支付宝服务器主动通知商户服务器里指定的页面http/https路径。
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *TradePayReq) DoValidate() error {
@@ -1063,7 +1063,7 @@ type TradeOrderInfoSyncReq struct {
 	VIOLATED： 用户已违约
 	适用场景：如果用户在约定时间（具体根据行业约定，有一定宽限期）内未完成订单支付，反馈该状态，芝麻将对用户记录一条负面记录，请谨慎使用； {"status":"COMPLETE"}
 	*/
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *TradeOrderInfoSyncReq) RequestApi() string {

@@ -23,7 +23,7 @@ type UserCertifyOpenInitializeReq struct {
 	//SMART_FACE：多因子快捷认证
 	IdentityParam  OpenCertifyIdentityParam  `json:"identity_param"`  // 必选	 需要验证的身份信息
 	MerchantConfig OpenCertifyMerchantConfig `json:"merchant_config"` // 必选 商户个性化配置
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *UserCertifyOpenInitializeReq) DoValidate() error {
@@ -89,7 +89,7 @@ var _ IAliPayRequest = &UserCertifyOpenQueryReq{}
 
 type UserCertifyOpenQueryReq struct {
 	CertifyId string `json:"certify_id"` // 必选	32 本次申请操作的唯一标识，通过alipay.user.certify.open.initialize(身份认证初始化服务)接口同步响应获取。
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *UserCertifyOpenQueryReq) DoValidate() error {

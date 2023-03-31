@@ -17,7 +17,7 @@ type OpenAuthTokenAppReq struct {
 	GrantType    string `json:"grant_type"`              // 必选	20 授权方式。支持： 1.authorization_code，表示换取使用用户授权码code换取授权令牌access_token。 2.refresh_token，表示使用refresh_token刷新获取新授权令牌。
 	Code         string `json:"code,omitempty"`          // 可选 40 授权码，用户对应用授权后得到。本参数在 grant_type 为 authorization_code 时必填；为 refresh_token 时不填。 4b203fe6c11548bcabd8da5bb087a83b
 	RefreshToken string `json:"refresh_token,omitempty"` //	可选	40 刷新令牌，上次换取访问令牌时得到。本参数在 grant_type 为 authorization_code 时不填；为 refresh_token 时必填，且该值来源于此接口的返回值 app_refresh_token（即至少需要通过 grant_type=authorization_code 调用此接口一次才能获取）。	201208134b203fe6c11548bcabd8da5bb087a83b
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *OpenAuthTokenAppReq) DoValidate() error {

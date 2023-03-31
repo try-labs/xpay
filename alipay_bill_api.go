@@ -13,7 +13,7 @@ var _ IAliPayRequest = (*DataBillBalanceQueryReq)(nil)
 
 type DataBillBalanceQueryReq struct {
 	BillUserId string `json:"bill_user_id,omitempty"` // 可选	16 目标查询账户（仅支持部分场景，查询自身时候不需要传递当前字段）。 2088123456789012
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *DataBillBalanceQueryReq) RequestApi() string {
@@ -46,7 +46,7 @@ type DataBillBailQueryReq struct {
 	BailType   string `json:"bail_type"`              // 必选	20 保证金类型，目前支持TMALL_BAIL-天猫保证金，TAOBAO_BAIL-淘宝保证金 TMALL_BAIL
 	TransLogId string `json:"trans_log_id,omitempty"` // 可选	255 保证金流水号。如果查询参数中指定流水号，则只查询流水号相关的记录 20190101***
 	BizOrigNo  string `json:"biz_orig_no,omitempty"`  // 可选	255 业务基础订单号。如果查询参数中指定订单号，则只查询相关的记录 1***
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *DataBillBailQueryReq) RequestApi() string {

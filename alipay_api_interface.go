@@ -35,18 +35,18 @@ type IAliPayRequest interface {
 	Validator
 }
 
-type BaseAliPayRequest struct {
+type baseAliPayRequest struct {
 }
 
-func (r *BaseAliPayRequest) RequestHttpMethod() string {
+func (r *baseAliPayRequest) RequestHttpMethod() string {
 	return "POST"
 }
 
-func (r *BaseAliPayRequest) RequestApi() string {
+func (r *baseAliPayRequest) RequestApi() string {
 	panic("please implement yourself")
 }
 
-func (r *BaseAliPayRequest) RequestApiVersion() string {
+func (r *baseAliPayRequest) RequestApiVersion() string {
 	return "1.0"
 }
 

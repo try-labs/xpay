@@ -16,7 +16,7 @@ type OauthTokenReq struct {
 	GrantType    string `json:"grant_type"`              // 必选	20 授权方式。支持： 1.authorization_code，表示换取使用用户授权码code换取授权令牌access_token。 2.refresh_token，表示使用refresh_token刷新获取新授权令牌。
 	Code         string `json:"code,omitempty"`          // 可选 40 授权码，用户对应用授权后得到。本参数在 grant_type 为 authorization_code 时必填；为 refresh_token 时不填。 4b203fe6c11548bcabd8da5bb087a83b
 	RefreshToken string `json:"refresh_token,omitempty"` //	可选	40 刷新令牌，上次换取访问令牌时得到。本参数在 grant_type 为 authorization_code 时不填；为 refresh_token 时必填，且该值来源于此接口的返回值 app_refresh_token（即至少需要通过 grant_type=authorization_code 调用此接口一次才能获取）。	201208134b203fe6c11548bcabd8da5bb087a83b
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 var _ IAliPayRequest = &OauthTokenReq{}
@@ -81,7 +81,7 @@ var _ IAliPayRequest = &UserInfoShareReq{}
 
 type UserInfoShareReq struct {
 	AuthToken string `json:"auth_token"` // 必选	40 用户授权令牌，同 access_token（用户访问令牌）。针对用户授权接口，获取用户相关数据时，用于标识用户授权关系。需使用 auth_code（用户授权码）换取此令牌，详情见 用户授权
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *UserInfoShareReq) DoValidate() error {
@@ -132,7 +132,7 @@ type UserInfoAuthReq struct {
 	 */
 	// 自己添加
 	ReturnUrl string `json:"return_url,omitempty" url:"return_url,omitempty"` // 可选	256 HTTP/HTTPS开头字符串
-	BaseAliPayRequest
+	baseAliPayRequest
 }
 
 func (r *UserInfoAuthReq) DoValidate() error {
