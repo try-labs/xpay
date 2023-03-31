@@ -9,7 +9,7 @@
 
 #### Golang版本要求
 由于Golang对于泛型方法暂未支持，遂SDK中的实现并没有使用泛型。当前SDK对Golang版本没有特殊要求，
-但防止一些意外问题发生，推荐最低使用Golang1.16版本。支持设置
+但防止一些意外问题发生，推荐最低使用Golang1.16版本。
 
 #### 安装
 ```shell
@@ -21,15 +21,15 @@ go get -u github.com/try-labs/xpay
 
 
 #### 使用
-支持支付宝的公钥模式和证书模式,两种模式能同时存在，只能选择其中一种。所有请求返回结果时已经验证过签名，无需再次实现验签。
+支持支付宝的公钥模式和证书模式,两种模式不能同时存在，只能选择其中一种。所有请求返回结果时已经验证过签名，无需再次实现验签。
 
- - 使用公钥初始化 ``alipay.Client`` 客户端
+ - 使用公钥初始化 ``alipay.Client`` 客户端，推荐使用``NewClient()``创建客户端，支持``选项模式``设置参数。因为支付宝提供了可用的测试环境:``沙箱环境``，SDK通过``isProd``属性来确定，是请求支付宝的正式环境还是沙箱环境，isProd默认``false``即默认是请求沙箱环境，可以用``SetClientOptIsProd()``更改。
 ```Golang
 
 var err error
 var client *alipay.Client
 signStrategy := NewNormalRSA2SignStrategy(AppId,PrivateKey, PublicKey, AlipayPublicKey)
-client, err = NewAlipayClient(signStrategy)
+client, err = NewAlipayClient(signStrategy,SetClientOptIsProd(true))
 if err != nil {
   fmt.Println("初始化失败, 错误信息为", err, client)
 }
@@ -285,3 +285,6 @@ return_url用于接收同步通知，notify_url用于接收异步通知。
 - 验签文档： [https://opendocs.alipay.com/common/02mse7](https://opendocs.alipay.com/common/02mse7)
 - 常见问题： [https://opensupport.alipay.com/support/knowledgeInfo/9483?ant_source=antsupport](https://opensupport.alipay.com/support/knowledgeInfo/9483?ant_source=antsupport)
   [https://opensupport.alipay.com/support/helpcenter/192/201602487632?ant_source=antsupport](https://opensupport.alipay.com/support/helpcenter/192/201602487632?ant_source=antsupport)
+
+#### 支付宝产品介绍
+支付产品文档: [https://b.alipay.com/signing/productSetV2.htm](https://b.alipay.com/signing/productSetV2.htm)
