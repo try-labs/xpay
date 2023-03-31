@@ -29,7 +29,7 @@ go get -u github.com/try-labs/xpay
 var err error
 var client *alipay.Client
 signStrategy := NewNormalRSA2SignStrategy(AppId,PrivateKey, PublicKey, AlipayPublicKey)
-client, err = NewAlipayClient(signStrategy,SetClientOptIsProd(true))
+client, err = NewClient(signStrategy,SetClientOptIsProd(true))
 if err != nil {
   fmt.Println("初始化失败, 错误信息为", err, client)
 }
@@ -276,6 +276,7 @@ return_url用于接收同步通知，notify_url用于接收异步通知。
 #### 关于应用私钥 (privateKey)
 
 应用私钥是我们通过工具生成的私钥，调用支付宝接口的时候，我们需要使用该私钥对参数进行签名。
+对应的地址[https://open.alipay.com/develop/manage/app-key](https://open.alipay.com/develop/manage/app-key)
 
 #### 支持 RSA 签名及验证
 
