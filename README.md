@@ -11,6 +11,10 @@
 由于Golang对于泛型方法暂未支持，遂SDK中的实现并没有使用泛型。当前SDK对Golang版本没有特殊要求，
 但防止一些意外问题发生，推荐最低使用Golang1.16版本。
 
+#### 优势
+1. api方法和官网文档映射清晰
+2. 支持传递context
+
 #### 安装
 ```shell
 go get -u github.com/try-labs/xpay
