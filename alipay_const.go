@@ -26,6 +26,7 @@ const LineBreak = "\n"
 
 const (
 	SandboxGatewayURL    = "https://openapi.alipaydev.com/gateway.do"
+	NewSandboxServerUrl  = "https://openapi-sandbox.dl.alipaydev.com/gateway.do"
 	ProductionGatewayURL = "https://openapi.alipay.com/gateway.do"
 	ProductionMAPIURL    = "https://mapi.alipay.com/gateway.do"
 

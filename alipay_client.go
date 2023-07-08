@@ -49,6 +49,12 @@ func SetClientOptIsProd(isProd bool) ClientOptFunc {
 	}
 }
 
+func SetServerUrl(serverUrl string) ClientOptFunc {
+	return func(client *Client) {
+		client.serverUrl = serverUrl
+	}
+}
+
 type Client struct {
 	mu        sync.Mutex
 	serverUrl string
