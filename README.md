@@ -23,6 +23,8 @@ go get -u github.com/try-labs/xpay
 #### SDK和支付宝接口对应规则
 例如支付宝的手机网站支付接口名称为``alipay.trade.wap.pay`` ，则SDK中的实现方法名为 ``TradeWapPay()``，对应的请求结构体为``TradeWapPayReq``，支付宝响应结构体为``TradeWapPayRes``
 
+#### 更新日志
+- 2023/7/8 增加```NewSandboxServerUrl常量``` 和 ```SetServerUrl()``` 兼容新版沙箱
 
 #### 使用
 支持支付宝的公钥模式和证书模式,两种模式不能同时存在，只能选择其中一种。所有请求返回结果时已经验证过签名，无需再次实现验签。
